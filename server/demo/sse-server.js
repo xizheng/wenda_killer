@@ -26,6 +26,9 @@ app.get('/sse', (req, res) => {
       if (!error && response.statusCode == 200) {
         var info1 = JSON.parse(body)
         var result1 = JSON.parse(info1.result[1])
+        if (result1.result=="啊呀，这题汪仔还在想"){
+          result1.result = "这题我不会，靠你了"
+        }
         if (id_xigua=='' || id_xigua!=result1.cd_id){
           sseStream.write({
             event: 'xigua',
@@ -49,6 +52,9 @@ app.get('/sse', (req, res) => {
       if (!error && response.statusCode == 200) {
         var info2 = JSON.parse(body)
         var result2 = JSON.parse(info2.result[1])
+        if (result2.result=="啊呀，这题汪仔还在想"){
+          result2.result = "这题我不会，靠你了"
+        }
         if (id_huajiao=='' || id_huajiao!=result2.cd_id){
           sseStream.write({
             event: 'huajiao',
@@ -71,6 +77,9 @@ app.get('/sse', (req, res) => {
       if (!error && response.statusCode == 200) {
         var info3 = JSON.parse(body)
         var result3 = JSON.parse(info3.result[1])
+        if (result3.result=="啊呀，这题汪仔还在想"){
+          result3.result = "这题我不会，靠你了"
+        }
         if (id_cddh=='' || id_cddh!=result3.cd_id){
           sseStream.write({
             event: 'cddh',
