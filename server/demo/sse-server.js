@@ -10,7 +10,9 @@ app.get('/sse', (req, res) => {
 
   const sseStream = new SseStream(req)
   sseStream.pipe(res)
-  var id_xigua = id_huajiao = id_cddh = ''
+  var id_xigua = ''
+  var id_huajiao = ''
+  var id_cddh = ''
   
   const pusher = setInterval(() => {
 
@@ -80,7 +82,7 @@ app.get('/sse', (req, res) => {
       }
     }
     request(options_cddh, callback_cddh);
-  }, 1000)
+  }, 500)
 
   res.on('close', () => {
     console.log('lost connection')
