@@ -11,6 +11,7 @@ app.get('/sse', (req, res) => {
   const sseStream = new SseStream(req)
   sseStream.pipe(res)
   var id_xigua = ''
+  var uc_xigua = ''
   var id_huajiao = ''
   var id_cddh = ''
   var id_zscr = ''
@@ -30,13 +31,23 @@ app.get('/sse', (req, res) => {
         if (result1.result=="啊呀，这题汪仔还在想"){
           result1.result = "这题我不会，靠你了"
         }
-        if (id_xigua=='' || id_xigua!=result1.cd_id){
-          sseStream.write({
-            event: 'xigua',
-            data: result1.title+'\n【答案】:【'+result1.result+'】'
-          })
-          id_xigua = result1.cd_id
-        }
+        request('http://crop-answer.sm.cn/answer/curr?format=json&activity=million', function (error1, response1, body1) {
+         if (!error1 && response1.statusCode == 200) {
+           var info11 = JSON.parse(body1)
+           if (info11.data.round){
+             result11 = info11.data.options[parseInt(info11.data.correct)].title
+             uc_xigua = result11
+           }
+           if (id_xigua=='' || id_xigua!=result1.cd_id){
+           sseStream.write({
+             event: 'xigua',
+             data: result1.title+'\n【枪手答案】:【'+uc_xigua+'】&&【AI答案】:'+'【'+result1.result+'】'
+           })
+           id_xigua = result1.cd_id
+           }  
+
+         }
+        })
 
       }
     }
