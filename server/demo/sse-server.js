@@ -13,6 +13,7 @@ app.get('/sse', (req, res) => {
   var id_xigua = ''
   var id_huajiao = ''
   var id_cddh = ''
+  var id_zscr = ''
   
   const pusher = setInterval(() => {
 
@@ -35,7 +36,6 @@ app.get('/sse', (req, res) => {
             data: result1.title+'\n【答案】:【'+result1.result+'】'
           })
           id_xigua = result1.cd_id
-//console.log(result1.title)
         }
 
       }
@@ -62,7 +62,6 @@ app.get('/sse', (req, res) => {
           })
           id_huajiao = result2.cd_id
         }
-//console.log(result2.title)
       }
     }
     request(options_huajiao, callback_huajiao);
@@ -87,10 +86,32 @@ app.get('/sse', (req, res) => {
           })
           id_cddh = result3.cd_id
         }
-//console.log(result3.title)
       }
     }
     request(options_cddh, callback_cddh);
+    var options_zscr = {
+    url: 'http://wd.sa.sogou.com/api/ans?key=zscr',
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C202 Sogousearch/Ios/5.9.7'
+    }
+    };
+    function callback_zscr(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var info4 = JSON.parse(body)
+        var result4 = JSON.parse(info4.result[1])
+        if (result4.result=="啊呀，这题汪仔还在想"){
+          result4.result = "这题我不会，靠你了"
+        }
+        if (id_zscr=='' || id_zscr!=result4.cd_id){
+          sseStream.write({
+            event: 'zscr',
+            data: result4.title+'\n【答案】:【'+result4.result+'】'
+          })
+          id_zscr = result4.cd_id
+        }
+      } 
+    }   
+    request(options_zscr, callback_zscr);
   }, 500)
 
   res.on('close', () => {
