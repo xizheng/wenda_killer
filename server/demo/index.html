@@ -38,21 +38,17 @@
 <script src=/eventsource-polyfill.js></script>
 
 <script>
-function subscribe_xigua(es, ul) {
+function subscribe(es) {
   es.addEventListener('xigua', function (e) {
     var li = document.createElement("LI");
     li.appendChild(document.createTextNode(e.data));
     document.getElementById("xigua").appendChild(li);
   });
-}
-function subscribe_huajiao(es, ul) {
   es.addEventListener('huajiao', function (e) {
     var li = document.createElement("LI");
     li.appendChild(document.createTextNode(e.data));
     document.getElementById("huajiao").appendChild(li);
   });
-}
-function subscribe_cddh(es, ul) {
   es.addEventListener('cddh', function (e) {
     var li = document.createElement("LI");
     li.appendChild(document.createTextNode(e.data));
@@ -60,8 +56,6 @@ function subscribe_cddh(es, ul) {
   });
 }
 
-subscribe_xigua(new EventSourcePolyfill('/sse'), document.getElementById('xigua'));
-subscribe_huajiao(new EventSourcePolyfill('/sse'), document.getElementById('huajiao'));
-subscribe_cddh(new EventSourcePolyfill('/sse'), document.getElementById('cddh'));
+subscribe(new EventSourcePolyfill('/sse'));
 </script>
 </body>
