@@ -52,7 +52,7 @@ app.get('/sse', (req, res) => {
            if (info11.data.round && uc_xigua!=info11.data.round){
            sseStream.write({
              event: 'xigua',
-             data: info11.data.round+'.'+info11.data.title+'【枪手答案】:【'+result11+'】'
+             data: info11.data.round+'. '+info11.data.title+'【枪手答案】:【'+result11+'】'
            })
            uc_xigua = info11.data.round
            }
