@@ -20,6 +20,8 @@ cd server
 
 npm install 
 
+npm install -g forever
+
 forever start demo/sse-server.js
 
 # 参考项目
