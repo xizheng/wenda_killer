@@ -22,6 +22,10 @@ npm install
 
 npm install -g forever
 
+yum install redis 
+
+systemctl start redis.service
+
 forever start demo/sse-server.js
 
 # 参考项目

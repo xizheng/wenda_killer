@@ -1,73 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
-.col {
-	float:left;
-	width:25%;
-	left:20%;
-}
-</style>
+  <style>
+    .col {
+      float: left;
+      width: 25%;
+      left: 20%;
+    }
+  </style>
 </head>
 
 <body>
-<div>
-  <h1>【WENDA KILLER】问答辅助，全平台支持西瓜视频、花椒直播、冲顶大会、芝士超人</h1>
-</div>
+  <div>
+    <h1>【WENDA KILLER】问答辅助，全平台支持西瓜视频、花椒直播、冲顶大会、芝士超人</h1>
+  </div>
 
-<div class=col>
-  <h2>西瓜视频</h2>
-  <ul id=xigua>
-  </ul>
-</div>
-
-
-<div class=col>
-  <h2>花椒直播</h2>
-  <ul id=huajiao>
-  </ul>
-</div>
-
-<div class=col>
-  <h2>冲顶大会</h2>
-  <ul id=cddh>
-  </ul>
-</div>
+  <div class=col>
+    <h2>西瓜视频</h2>
+    <ul id=xigua>
+    </ul>
+  </div>
 
 
-<div class=col>
-  <h2>芝士超人</h2>
-  <ul id=zscr>
-  </ul>
-</div>
+  <div class=col>
+    <h2>花椒直播</h2>
+    <ul id=huajiao>
+    </ul>
+  </div>
+
+  <div class=col>
+    <h2>冲顶大会</h2>
+    <ul id=cddh>
+    </ul>
+  </div>
 
 
-<script src=/eventsource-polyfill.js></script>
+  <div class=col>
+    <h2>芝士超人</h2>
+    <ul id=zscr>
+    </ul>
+  </div>
 
-<script>
-function subscribe(es) {
-  es.addEventListener('xigua', function (e) {
-    var li = document.createElement("LI");
-    li.appendChild(document.createTextNode(e.data));
-    document.getElementById("xigua").appendChild(li);
-  });
-  es.addEventListener('huajiao', function (e) {
-    var li = document.createElement("LI");
-    li.appendChild(document.createTextNode(e.data));
-    document.getElementById("huajiao").appendChild(li);
-  });
-  es.addEventListener('cddh', function (e) {
-    var li = document.createElement("LI");
-    li.appendChild(document.createTextNode(e.data));
-    document.getElementById("cddh").appendChild(li);
-  });
-  es.addEventListener('zscr', function (e) {
-    var li = document.createElement("LI");
-    li.appendChild(document.createTextNode(e.data));
-    document.getElementById("zscr").appendChild(li);
-  });
-}
 
-subscribe(new EventSourcePolyfill('/sse'));
-</script>
+  <script src=/eventsource-polyfill.js></script>
+
+  <script>
+    function subscribe(es) {
+      es.addEventListener('xigua', function (e) {
+        var li = document.createElement("LI");
+        li.appendChild(document.createTextNode(e.data));
+        document.getElementById("xigua").appendChild(li);
+      });
+      es.addEventListener('huajiao', function (e) {
+        var li = document.createElement("LI");
+        li.appendChild(document.createTextNode(e.data));
+        document.getElementById("huajiao").appendChild(li);
+      });
+      es.addEventListener('cddh', function (e) {
+        var li = document.createElement("LI");
+        li.appendChild(document.createTextNode(e.data));
+        document.getElementById("cddh").appendChild(li);
+      });
+      es.addEventListener('zscr', function (e) {
+        var li = document.createElement("LI");
+        li.appendChild(document.createTextNode(e.data));
+        document.getElementById("zscr").appendChild(li);
+      });
+    }
+
+    subscribe(new EventSourcePolyfill('/sse'));
+  </script>
 </body>
