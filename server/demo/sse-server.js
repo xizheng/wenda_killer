@@ -15,7 +15,7 @@ app.get('/sse', (req, res) => {
   var id_huajiao = ''
   var id_cddh = ''
   var id_zscr = ''
-  var result11 = '
+  var result11 = ''
   var j = request.jar();
   var url = 'http://wd.sa.sogou.com'
   j.setCookie(cookie, url);
