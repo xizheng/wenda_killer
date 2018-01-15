@@ -25,7 +25,6 @@ app.get('/sse', (req, res) => {
 
     var options_xigua = {
     url: 'http://wd.sa.sogou.com/api/ans?key=xigua',
-    jar: true,
     jar: j,
     headers: {
       'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C202 Sogousearch/Ios/5.9.7',
@@ -137,7 +136,7 @@ app.get('/sse', (req, res) => {
   //     } 
   //   }   
   //   request(options_zscr, callback_zscr);
-  }, 500)
+  }, 100000)
 
   res.on('close', () => {
     console.log('lost connection')
