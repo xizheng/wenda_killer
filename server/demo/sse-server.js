@@ -2,7 +2,7 @@ const express = require('express')
 const serveStatic = require('serve-static')
 const SseStream = require('ssestream')
 const request = require('request')
-request = request.defaults({jar: true})
+var request = request.defaults({jar: true})
 
 const app = express()
 app.use(serveStatic(__dirname))
