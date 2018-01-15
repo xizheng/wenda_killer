@@ -134,7 +134,7 @@ app.get('/sse', (req, res) => {
   //     } 
   //   }   
   //   request(options_zscr, callback_zscr);
-  // }, 500)
+  }, 500)
 
   res.on('close', () => {
     console.log('lost connection')
