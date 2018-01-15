@@ -28,7 +28,6 @@ app.get('/sse', (req, res) => {
     }
     };
     function callback_xigua(error, response, body) {
-      console.log(body)
       if (!error && response.statusCode == 200) {
         var info1 = JSON.parse(body)
         var result1 = JSON.parse(info1.result[1])
